@@ -7,8 +7,8 @@ module.exports = {
     // 'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'plugin:@typescript-eslint/strict',
     'plugin:unicorn/recommended',
-    'plugin:svelte/recommended',
-    'plugin:svelte/prettier',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
     'prettier'
   ],
   plugins: [
@@ -18,8 +18,15 @@ module.exports = {
     'vitest',
     'no-only-tests',
     'sort-keys',
-    'unicorn'
+    'unicorn',
+    'react',
+    'react-hooks'
   ],
+  settings: {
+    react: {
+      version: 'detect'
+    }
+  },
   ignorePatterns: [
     'docs/*',
     '*.cjs',
@@ -33,10 +40,10 @@ module.exports = {
   ],
   overrides: [
     {
-      files: ['*.svelte'],
-      parser: 'svelte-eslint-parser',
-      parserOptions: {
-        parser: '@typescript-eslint/parser'
+      files: ['*.tsx'],
+      rules: {
+        '@typescript-eslint/prefer-nullish-coalescing': 'off',
+        'react/react-in-jsx-scope': 'off'
       }
     },
     {
@@ -64,7 +71,9 @@ module.exports = {
     ecmaVersion: 2020,
     tsconfigRootDir: __dirname,
     project: './tsconfig.json',
-    extraFileExtensions: ['.svelte']
+    ecmaFeatures: {
+      jsx: true
+    }
   },
   env: {
     browser: true,
@@ -87,7 +96,8 @@ module.exports = {
     'unicorn/filename-case': [
       'error',
       {
-        case: 'camelCase'
+        case: 'camelCase',
+        ignore: ['*.tsx', '*.jsx']
       }
     ],
     'unicorn/filename-case': 'off',
@@ -116,6 +126,9 @@ module.exports = {
           ImportMetaEnv: true
         }
       }
-    ]
+    ],
+    'react/prop-types': 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn'
   }
 };

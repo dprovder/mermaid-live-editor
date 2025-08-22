@@ -1,18 +1,54 @@
 {
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
+    "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "declaration": false,
+    "declarationMap": false,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "removeComments": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "exactOptionalPropertyTypes": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": false,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/stores/*": ["./src/stores/*"],
+      "@/utils/*": ["./src/utils/*"],
+      "@/types/*": ["./src/types/*"]
+    },
+    "baseUrl": ".",
+    "types": ["vitest/importMeta", "@playwright/test", "node"]
+  },
   "include": [
-    "src/**/*.d.ts",
     "src/**/*.ts",
-    "src/**/*.svelte",
+    "src/**/*.tsx",
+    "src/**/*.d.ts",
     "static/**/*.js",
     "static/**/*.json",
     "playwright.config.ts",
-    "tests/**/*.ts"
+    "tests/**/*.ts",
+    "vite.config.ts"
   ],
-  "compilerOptions": {
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "strictNullChecks": true,
-    "types": ["vitest/importMeta", "@playwright/test"]
-  },
-  "extends": "./.svelte-kit/tsconfig.json"
+  "exclude": ["node_modules", "docs", "dist", ".svelte-kit"]
 }
