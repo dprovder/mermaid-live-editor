@@ -13,14 +13,14 @@ beforeAll(() => {
   Object.defineProperty(window, 'matchMedia', {
     writable: true,
     value: vi.fn().mockImplementation((query: string) => ({
+      addEventListener: vi.fn(),
+      addListener: vi.fn(), // deprecated
+      dispatchEvent: vi.fn(),
       matches: false,
       media: query,
       onchange: null,
-      addListener: vi.fn(), // deprecated
-      removeListener: vi.fn(), // deprecated
-      addEventListener: vi.fn(),
       removeEventListener: vi.fn(),
-      dispatchEvent: vi.fn()
+      removeListener: vi.fn() // deprecated
     }))
   });
 
@@ -48,8 +48,8 @@ beforeAll(() => {
   // Mock clipboard API
   Object.defineProperty(navigator, 'clipboard', {
     value: {
-      writeText: vi.fn().mockResolvedValue(undefined),
-      readText: vi.fn().mockResolvedValue('')
+      readText: vi.fn().mockResolvedValue(''),
+      writeText: vi.fn().mockResolvedValue()
     },
     writable: true
   });
@@ -59,65 +59,13 @@ beforeAll(() => {
   global.URL.revokeObjectURL = vi.fn();
 
   // Mock requestAnimationFrame
-  global.requestAnimationFrame = vi.fn((cb) => setTimeout(cb, 16));
-  global.cancelAnimationFrame = vi.fn((id) => clearTimeout(id));
+  global.requestAnimationFrame = vi.fn((callback: () => void) => {
+    const timeoutId = setTimeout(() => callback(), 16);
+    return Number(timeoutId);
+  });
+  global.cancelAnimationFrame = vi.fn((id: number) => clearTimeout(id));
 
   // Mock console methods to reduce noise in tests
   vi.spyOn(console, 'warn').mockImplementation(() => {});
   vi.spyOn(console, 'error').mockImplementation(() => {});
 });
-
-// Mock environment variables
-vi.mock('@/lib/util/env', () => ({
-  dev: true,
-  browser: 'window' in globalThis
-}));
-
-// Mock Monaco Editor (heavy dependency)
-vi.mock('monaco-editor', () => ({
-  editor: {
-    create: vi.fn(),
-    createModel: vi.fn(),
-    setTheme: vi.fn(),
-    defineTheme: vi.fn(),
-    getModels: vi.fn(() => []),
-    setModelLanguage: vi.fn()
-  },
-  languages: {
-    register: vi.fn(),
-    setMonarchTokensProvider: vi.fn(),
-    registerCompletionItemProvider: vi.fn()
-  },
-  KeyMod: {
-    CtrlCmd: 1
-  },
-  KeyCode: {
-    KeyS: 2
-  }
-}));
-
-// Mock Mermaid
-vi.mock('mermaid', () => ({
-  default: {
-    initialize: vi.fn(),
-    parse: vi.fn().mockResolvedValue({ parser: 'success' }),
-    render: vi.fn().mockResolvedValue({ svg: '<svg></svg>' }),
-    mermaidAPI: {
-      initialize: vi.fn(),
-      parse: vi.fn(),
-      render: vi.fn()
-    }
-  }
-}));
-
-// Mock svg-pan-zoom
-vi.mock('svg-pan-zoom', () => ({
-  default: vi.fn(() => ({
-    destroy: vi.fn(),
-    zoom: vi.fn(),
-    pan: vi.fn(),
-    fit: vi.fn(),
-    center: vi.fn(),
-    reset: vi.fn()
-  }))
-}));
