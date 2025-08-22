@@ -16,13 +16,16 @@
 If you want GitHub integration:
 
 ### Option 1: Enable Issues
+
 ```bash
 # Enable issues on the repository (requires admin access)
 gh repo edit --enable-issues
 ```
 
 ### Option 2: Use Different Repository
+
 Fork the repository or use a different repo with issues enabled:
+
 ```bash
 # Set up tracking in different repo
 gh repo clone your-org/mermaid-live-editor-tracking
@@ -30,7 +33,9 @@ gh repo clone your-org/mermaid-live-editor-tracking
 ```
 
 ### Option 3: Local-Only Development
+
 Continue with local PM system only:
+
 - Epic execution works normally: `/pm:epic-start zustand-react-vite`
 - Task tracking via local files
 - Progress monitoring: `/pm:epic-status zustand-react-vite`

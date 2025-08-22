@@ -7,8 +7,9 @@ The foundation setup task involves migrating from SvelteKit to React+Vite+TypeSc
 ## Parallel Work Streams for 001-foundation-setup
 
 ### Stream A: Project Configuration & Build Setup
+
 - **Scope**: Initialize new React+Vite project structure, configure build pipeline, and set up development environment
-- **Files**: 
+- **Files**:
   - `vite.config.ts` (new React configuration)
   - `package.json` (dependency updates and script changes)
   - `tsconfig.json` (React-specific TypeScript config)
@@ -20,8 +21,9 @@ The foundation setup task involves migrating from SvelteKit to React+Vite+TypeSc
 - **Estimated Time**: 4 hours
 
 ### Stream B: Core Application Architecture
+
 - **Scope**: Set up React app structure, routing, and main layout components
-- **Files**: 
+- **Files**:
   - `src/App.tsx` (root component)
   - `src/main.tsx` (entry point)
   - `src/index.html` (HTML template)
@@ -32,8 +34,9 @@ The foundation setup task involves migrating from SvelteKit to React+Vite+TypeSc
 - **Estimated Time**: 3 hours
 
 ### Stream C: Zustand Store Foundation
+
 - **Scope**: Set up Zustand store structure and migrate core state management logic
-- **Files**: 
+- **Files**:
   - `src/stores/` (all store files)
   - `src/stores/index.ts` (store exports)
   - `src/stores/stateStore.ts` (main state store)
@@ -43,8 +46,9 @@ The foundation setup task involves migrating from SvelteKit to React+Vite+TypeSc
 - **Estimated Time**: 5 hours
 
 ### Stream D: Utility Migration & TypeScript Setup
+
 - **Scope**: Migrate utility functions and TypeScript definitions from Svelte to React-compatible versions
-- **Files**: 
+- **Files**:
   - `src/utils/` (migrate from `src/lib/util/`)
   - `src/types/` (migrate from `src/lib/types.d.ts`)
   - `src/constants.ts` (migrate from `src/lib/constants.ts`)
@@ -54,8 +58,9 @@ The foundation setup task involves migrating from SvelteKit to React+Vite+TypeSc
 - **Estimated Time**: 3 hours
 
 ### Stream E: Testing Infrastructure
+
 - **Scope**: Set up testing environment for React components and utilities
-- **Files**: 
+- **Files**:
   - `vitest.config.ts` (React-specific test config)
   - `src/tests/setup.ts` (test setup for React)
   - `playwright.config.ts` (updates for React app)
@@ -78,12 +83,14 @@ graph TD
 
 1. **Stream A must complete first** - All other streams depend on the basic project configuration and dependencies being in place
 
-2. **Shared file conflicts**: 
+2. **Shared file conflicts**:
+
    - `package.json` - Only Stream A should modify this
    - `tsconfig.json` - Only Stream A should modify this initially
    - `vite.config.ts` - Only Stream A should own this file
 
 3. **Communication points**:
+
    - Stream A should announce when dependencies are installed and basic config is ready
    - Stream C should coordinate with Stream D on shared type definitions
    - Stream B should coordinate with Stream C on state integration points
@@ -96,24 +103,28 @@ graph TD
 ## Success Criteria
 
 ### Development Environment
+
 - [ ] `npm run dev` starts React development server on port 3000
 - [ ] Hot module replacement works for React components
 - [ ] TypeScript compilation passes with zero errors
 - [ ] ESLint passes with current code standards
 
 ### Build Process
+
 - [ ] `npm run build` generates static site in `docs/` directory
 - [ ] Bundle size is documented and comparable to current SvelteKit build
 - [ ] All environment variables with `MERMAID_` prefix are supported
 - [ ] Static site generation works correctly for GitHub Pages
 
 ### Code Quality
+
 - [ ] TypeScript strict mode enabled and passing
 - [ ] All utility functions migrated and working
 - [ ] Prettier formatting configured and working
 - [ ] Git hooks and lint-staged working correctly
 
 ### Testing
+
 - [ ] Unit test framework (Vitest) working with React components
 - [ ] E2E tests (Playwright) updated for React app structure
 - [ ] Test coverage reporting functional
@@ -129,6 +140,7 @@ graph TD
 ## Next Steps After Completion
 
 Once all streams are complete and success criteria are met:
+
 1. Verify the entire application builds and runs correctly
 2. Run full test suite to ensure no regressions
 3. Document any architectural changes or new patterns

@@ -30,10 +30,7 @@ export default defineConfig({
     }
   },
   envPrefix: 'MERMAID_',
-  plugins: [
-    react(),
-    alwaysFullReload
-  ],
+  plugins: [react(), alwaysFullReload],
   preview: {
     host: true,
     port: 3000
@@ -46,22 +43,5 @@ export default defineConfig({
   server: {
     host: true,
     port: 3000
-  },
-  test: {
-    coverage: {
-      exclude: ['src/mocks', 'docs', 'src/**/*.test.ts', 'src/**/*.test.tsx'],
-      reporter: ['text', 'json', 'html', 'lcov']
-    },
-    environment: 'jsdom',
-    exclude: [
-      'tests/**/*',
-      '**/node_modules/**',
-      '**/dist/**',
-      '**/.{idea,git,cache,output,temp}/**',
-      '**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build,eslint,prettier}.config.*'
-    ],
-    // in-source testing
-    includeSource: ['src/**/*.{js,ts,tsx}'],
-    setupFiles: ['./src/tests/setup.ts']
   }
 });
