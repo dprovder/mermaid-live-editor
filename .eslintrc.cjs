@@ -32,6 +32,7 @@ module.exports = {
     '*.cjs',
     '*.js',
     '*.md',
+    '*.css',
     'snapshots.js',
     'svelte.config.js',
     'renovate.json',

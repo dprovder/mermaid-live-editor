@@ -4,7 +4,10 @@ status: backlog
 created: 2025-08-22T16:27:50Z
 progress: 0%
 prd: .claude/prds/zustand-react-vite.md
-github: https://github.com/dprovder/mermaid-live-editor/issues/1234
+github: disabled
+updated: 2025-08-22T17:37:19Z
+sync_status: blocked
+sync_note: Repository has GitHub issues disabled
 ---
 
 # Epic: zustand-react-vite
